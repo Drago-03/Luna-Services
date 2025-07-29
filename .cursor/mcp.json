@@ -1,0 +1,136 @@
+{
+    "mcpServers": {
+        "luna-services-stdio": {
+            "type": "stdio",
+            "command": "uv",
+            "args": [
+                "--directory",
+                "/Users/mantejsingh/Desktop/Luna-Services", // Adjust the path as needed
+                "run",
+                "serve_stdio"
+            ],
+            "env": {
+                "GEMINI_API_KEY": "your-google-gemini-api-key-here",
+                "OPENAI_API_KEY": "your-openai-api-key-here",
+                "RIVA_SERVER_URL": "http://localhost:50051",
+                "VECTOR_DB_URL": "http://localhost:8000",
+                "MCP_ENABLE_VOICE": "true",
+                "MCP_ENABLE_MULTIMODAL": "true",
+                "MCP_ENABLE_ANALYTICS": "true",
+                "MCP_TRANSPORT": "stdio"
+            }
+        },
+        
+        "luna-services-python": {
+            "type": "stdio",
+            "command": "python",
+            "args": [
+                "/Users/mantejsingh/Desktop/Luna-Services/run_mcp.py"
+            ],
+            "env": {
+                "GEMINI_API_KEY": "your-google-gemini-api-key-here",
+                "OPENAI_API_KEY": "your-openai-api-key-here",
+                "RIVA_SERVER_URL": "http://localhost:50051",
+                "VECTOR_DB_URL": "http://localhost:8000",
+                "MCP_ENABLE_VOICE": "true",
+                "MCP_ENABLE_MULTIMODAL": "true",
+                "MCP_ENABLE_ANALYTICS": "true",
+                "MCP_TRANSPORT": "stdio"
+            }
+        },
+        
+        "luna-services-automcp": {
+            "type": "stdio",
+            "command": "automcp",
+            "args": [
+                "serve",
+                "-t",
+                "stdio"
+            ],
+            "cwd": "/Users/mantejsingh/Desktop/Luna-Services",
+            "env": {
+                "GEMINI_API_KEY": "your-google-gemini-api-key-here",
+                "OPENAI_API_KEY": "your-openai-api-key-here",
+                "RIVA_SERVER_URL": "http://localhost:50051",
+                "VECTOR_DB_URL": "http://localhost:8000",
+                "MCP_ENABLE_VOICE": "true",
+                "MCP_ENABLE_MULTIMODAL": "true",
+                "MCP_ENABLE_ANALYTICS": "true",
+                "MCP_TRANSPORT": "stdio"
+            }
+        },
+        
+        "luna-services-sse": {
+            "type": "sse",
+            "url": "http://localhost:8000/sse",
+            "env": {
+                "MCP_TRANSPORT": "sse"
+            }
+        },
+        
+        "luna-services-github": {
+            "type": "stdio",
+            "command": "uvx",
+            "args": [
+                "--from",
+                "git+https://github.com/Drago-03/Luna-Services",
+                "serve_stdio"
+            ],
+            "env": {
+                "GEMINI_API_KEY": "your-google-gemini-api-key-here",
+                "OPENAI_API_KEY": "your-openai-api-key-here",
+                "MCP_TRANSPORT": "stdio"
+            }
+        },
+
+        "luna-services-debug": {
+            "type": "stdio",
+            "command": "uv",
+            "args": [
+                "--directory",
+                "/Users/mantejsingh/Desktop/Luna-Services",
+                "run",
+                "python",
+                "run_mcp.py"
+            ],
+            "env": {
+                "GEMINI_API_KEY": "your-google-gemini-api-key-here",
+                "OPENAI_API_KEY": "your-openai-api-key-here",
+                "MCP_DEBUG": "1",
+                "MCP_TRANSPORT": "stdio",
+                "PYTHONPATH": "/Users/mantejsingh/Desktop/Luna-Services"
+            }
+        },
+
+        "luna-services-minimal": {
+            "type": "stdio",
+            "command": "python",
+            "args": [
+                "-c",
+                "import sys; sys.path.append('/Users/mantejsingh/Desktop/Luna-Services'); from run_mcp import main; main()"
+            ],
+            "env": {
+                "MCP_TRANSPORT": "stdio"
+            }
+        },
+
+        "luna-services-cross-platform": {
+            "type": "stdio",
+            "command": "uv",
+            "args": [
+                "run",
+                "--directory",
+                "/Users/mantejsingh/Desktop/Luna-Services",
+                "python",
+                "-m",
+                "run_mcp"
+            ],
+            "env": {
+                "GEMINI_API_KEY": "your-google-gemini-api-key-here",
+                "OPENAI_API_KEY": "your-openai-api-key-here",
+                "MCP_TRANSPORT": "stdio",
+                "UNIVERSAL_IDE_SUPPORT": "true"
+            }
+        }
+    }
+}

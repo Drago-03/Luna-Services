@@ -117,9 +117,21 @@ const AuthPage: React.FC = () => {
                   objectFit="contain"
                 />
                 <VStack align="start" spacing={1}>
-                  <Heading size="xl" color="blue.600">
-                    Universal MCP
-                  </Heading>
+                  <HStack spacing={2}>
+                    <Heading size="xl" color="blue.600">
+                      Universal MCP
+                    </Heading>
+                    <Badge 
+                      colorScheme="orange" 
+                      variant="solid"
+                      fontSize="sm"
+                      px={3}
+                      py={1}
+                      borderRadius="md"
+                    >
+                      BETA
+                    </Badge>
+                  </HStack>
                   <Text fontSize="lg" color="gray.600" fontWeight="medium">
                     AI-Powered Development Platform
                   </Text>

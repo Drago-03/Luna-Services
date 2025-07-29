@@ -15,8 +15,9 @@ import {
   Divider,
   Checkbox,
   Link,
+  Badge,
 } from '@chakra-ui/react';
-import { Shield, Mail, Lock } from 'lucide-react';
+import { Shield } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { Navigate } from 'react-router-dom';
 
@@ -64,9 +65,21 @@ export const Login: React.FC = () => {
           <VStack spacing={4}>
             <HStack spacing={3}>
               <Icon as={Shield} boxSize={10} color="primary.500" />
-              <Text fontSize="3xl" fontWeight="bold" color="primary.500">
-                Luna-service
-              </Text>
+              <HStack spacing={2}>
+                <Text fontSize="3xl" fontWeight="bold" color="primary.500">
+                  Luna-service
+                </Text>
+                <Badge 
+                  colorScheme="orange" 
+                  variant="solid"
+                  fontSize="sm"
+                  px={3}
+                  py={1}
+                  borderRadius="md"
+                >
+                  BETA
+                </Badge>
+              </HStack>
             </HStack>
             <Text color="gray.500" textAlign="center">
               Master Control Program for Engineering Teams
@@ -97,7 +110,6 @@ export const Login: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
-                    leftElement={<Icon as={Mail} color="gray.400" ml={3} />}
                     required
                   />
                 </FormControl>
@@ -109,7 +121,6 @@ export const Login: React.FC = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password"
-                    leftElement={<Icon as={Lock} color="gray.400" ml={3} />}
                     required
                   />
                 </FormControl>

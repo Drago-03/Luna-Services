@@ -34,11 +34,17 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
             border="4px solid #E2E8F0" 
             borderTopColor="#3182CE" 
             borderRadius="full" 
-            animate="spin"
             mx="auto"
             mb={4}
+            css={{
+              animation: 'spin 1s linear infinite',
+              '@keyframes spin': {
+                '0%': { transform: 'rotate(0deg)' },
+                '100%': { transform: 'rotate(360deg)' },
+              },
+            }}
           />
-          <Box fontSize="lg" color="gray.600">Loading Universal MCP...</Box>
+          <Box fontSize="lg" color="gray.600">Loading Universal MCP BETA...</Box>
         </Box>
       </Box>
     );

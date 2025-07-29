@@ -50,9 +50,21 @@ export default function Header() {
             objectFit="contain"
           />
           <Box>
-            <Text fontSize="lg" fontWeight="semibold" color="gray.900">
-              Universal MCP Dashboard
-            </Text>
+            <HStack spacing={2}>
+              <Text fontSize="lg" fontWeight="semibold" color="gray.900">
+                Universal MCP Dashboard
+              </Text>
+              <Badge 
+                colorScheme="orange" 
+                variant="solid"
+                fontSize="xs"
+                px={2}
+                py={1}
+                borderRadius="md"
+              >
+                BETA
+              </Badge>
+            </HStack>
             <Text fontSize="sm" color="gray.500">
               AI-Powered Development Platform
             </Text>

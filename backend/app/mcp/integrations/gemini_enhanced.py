@@ -36,6 +36,15 @@ class EnhancedGeminiService:
         """Initialize the enhanced Gemini service"""
         self.config = config
         self.model = None
+        
+        # Safety settings for development context
+        self.safety_settings = {
+            HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
+            HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
+            HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE,
+            HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+        }
+        
         self._initialize_model()
         
         # Specialized prompts for different development tasks
@@ -47,14 +56,6 @@ class EnhancedGeminiService:
             MCPTaskType.API_INTEGRATION: self._get_api_integration_prompt(),
             MCPTaskType.DOCUMENTATION: self._get_documentation_prompt(),
             MCPTaskType.TESTING: self._get_testing_prompt(),
-        }
-        
-        # Safety settings for development context
-        self.safety_settings = {
-            HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
-            HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
-            HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE,
-            HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_ONLY_HIGH,
         }
     
     def _initialize_model(self):

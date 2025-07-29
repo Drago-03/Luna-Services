@@ -1,0 +1,49 @@
+{
+    "mcpServers": {
+        "luna-services-universal": {
+            "type": "stdio",
+            "command": "python",
+            "args": [
+                "run_mcp.py"
+            ],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "GEMINI_API_KEY": "${env:GEMINI_API_KEY}",
+                "MCP_CLIENT": "vscode",
+                "MCP_MODE": "development",
+                "MCP_BETA": "true"
+            }
+        },
+        
+        "luna-services-production": {
+            "type": "stdio", 
+            "command": "uv",
+            "args": [
+                "run",
+                "serve_stdio"
+            ],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "GEMINI_API_KEY": "${env:GEMINI_API_KEY}",
+                "MCP_CLIENT": "vscode",
+                "MCP_MODE": "production",
+                "MCP_BETA": "true"
+            }
+        },
+        
+        "luna-services-github": {
+            "type": "stdio",
+            "command": "uvx",
+            "args": [
+                "--from",
+                "git+https://github.com/Drago-03/Luna-Services",
+                "serve_stdio"
+            ],
+            "env": {
+                "GEMINI_API_KEY": "${env:GEMINI_API_KEY}",
+                "MCP_CLIENT": "vscode",
+                "MCP_BETA": "true"
+            }
+        }
+    }
+}

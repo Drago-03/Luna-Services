@@ -64,7 +64,6 @@ class EnhancedMCPService:
             # Import AI services here to avoid circular imports
             from .integrations.gemini_enhanced import EnhancedGeminiService
             from .integrations.langchain_enhanced import EnhancedLangChainService
-            from .integrations.riva_enhanced import EnhancedRivaService
             
             # Initialize Enhanced Gemini Service
             self.gemini_service = EnhancedGeminiService(self.config.gemini)
@@ -77,9 +76,17 @@ class EnhancedMCPService:
             )
             logger.info("Enhanced LangChain service initialized")
             
-            # Initialize Enhanced Riva Service
-            self.riva_service = EnhancedRivaService(self.config.riva)
-            logger.info("Enhanced Riva service initialized")
+            # Initialize Enhanced Riva Service (optional for AutoMCP compatibility)
+            try:
+                from .integrations.riva_enhanced import EnhancedRivaService
+                self.riva_service = EnhancedRivaService(self.config.riva)
+                logger.info("Enhanced Riva service initialized")
+            except ImportError as e:
+                logger.warning(f"Riva service not available (missing dependencies): {e}")
+                self.riva_service = None
+            except Exception as e:
+                logger.warning(f"Failed to initialize Riva service: {e}")
+                self.riva_service = None
             
         except Exception as e:
             logger.error(f"Failed to initialize AI services: {e}")
@@ -102,7 +109,7 @@ class EnhancedMCPService:
             
             # Add voice output if requested
             if request.metadata and request.metadata.get("include_voice", False):
-                if response.explanation and not response.voice_output:
+                if response.explanation and not response.voice_output and self.riva_service:
                     response.voice_output = await self.riva_service.create_audio_response(
                         response.explanation, 
                         str(request.task_type.value)
@@ -282,13 +289,15 @@ class EnhancedMCPService:
             raise
     
     async def _handle_voice_command(self, request: VoiceCommandRequest) -> MCPResponse:
-        """Handle voice command requests"""
-        try:
-            return await self.riva_service.process_voice_command(request)
-            
-        except Exception as e:
-            logger.error(f"Error in voice command: {e}")
-            raise
+        """Handle voice command processing"""
+        if not self.riva_service:
+            return MCPResponse(
+                request_id=request.id,
+                status="error",
+                error_message="Voice processing not available (Riva service not initialized)",
+                completed_at=datetime.utcnow()
+            )
+        return await self.riva_service.process_voice_command(request)
     
     async def _handle_multi_modal(self, request: MCPRequest) -> MCPResponse:
         """Handle multi-modal requests (text + image/voice)"""
@@ -297,7 +306,7 @@ class EnhancedMCPService:
             response = await self.gemini_service.process_request(request)
             
             # Add voice output if requested
-            if response.explanation:
+            if response.explanation and self.riva_service:
                 voice_output = await self.riva_service.create_audio_response(
                     response.explanation,
                     "explanation"
@@ -376,7 +385,7 @@ class EnhancedMCPService:
             session = self.sessions[session_id]
             
             # Use LangChain for conversation continuity
-            if hasattr(session, 'langchain_session_id'):
+            if hasattr(session, 'langchain_session_id') and session.langchain_session_id:
                 response = await self.langchain_service.continue_conversation(
                     session.langchain_session_id, message
                 )
@@ -492,8 +501,14 @@ class EnhancedMCPService:
                 }
             
             # Check Riva service
-            riva_health = await self.riva_service.health_check()
-            health_status["components"]["riva"] = riva_health
+            if self.riva_service:
+                riva_health = await self.riva_service.health_check()
+                health_status["components"]["riva"] = riva_health
+            else:
+                health_status["components"]["riva"] = {
+                    "status": "unavailable",
+                    "message": "Riva service not initialized"
+                }
             
             # Check LangChain service
             health_status["components"]["langchain"] = {

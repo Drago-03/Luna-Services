@@ -1,12 +1,14 @@
-# Luna-Services - Universal MCP System
+# Luna Services - Universal MCP System (BETA)
 
-> AI-Powered Development Assistant with Supabase Database Integration
+> AI-Powered Development Assistant with AutoMCP Compatibility & Multi-IDE Support
 
-Luna-Services is a comprehensive Universal Model Context Protocol (MCP) system that provides intelligent development assistance powered by Google Gemini AI, Supabase database backend, and multi-modal processing. Built for modern development teams seeking AI-enhanced productivity with enterprise-grade data management.
+Luna-Services is a comprehensive Universal Model Context Protocol (MCP) system that provides intelligent development assistance powered by Google Gemini AI, Supabase database backend, and multi-modal processing. Now fully compatible with [AutoMCP by NapthaAI](https://github.com/napthaai/automcp) for seamless integration with MCP clients like Cursor and Claude Desktop.
 
 ## 🚀 Features
 
-- **Universal MCP Integration**: Complete Model Context Protocol implementation with Google Gemini 2.0 Flash
+- **AutoMCP Compatible**: Full compatibility with AutoMCP framework for standardized MCP server deployment
+- **Universal MCP Integration**: Complete Model Context Protocol implementation with Google Gemini 2.5 Flash
+- **Naptha MCPaaS Ready**: Deploy directly to Naptha's MCP-as-a-Service platform
 - **Supabase Backend**: Modern PostgreSQL database with real-time capabilities and Row Level Security
 - **Voice-Enabled Development**: Natural language voice commands for code generation and assistance
 - **Multi-Modal Processing**: Handle text, code, voice, and file inputs seamlessly
@@ -14,6 +16,33 @@ Luna-Services is a comprehensive Universal Model Context Protocol (MCP) system t
 - **Clerk + Supabase Authentication**: Dual authentication system with secure user management
 - **Intelligent Dashboard**: Real-time activity tracking and project insights
 - **Enterprise Ready**: Scalable architecture with Docker support and monitoring
+
+## 🔗 AutoMCP Integration
+
+Luna Services is now fully compatible with the AutoMCP ecosystem:
+
+- **MCP Server**: Standardized MCP server implementation (`run_mcp.py`)
+- **Client Integration**: Works with Cursor IDE, Claude Desktop, and other MCP clients
+- **MCPaaS Deployment**: One-click deployment to Naptha's cloud platform
+- **GitHub Integration**: Direct execution from GitHub repositories
+
+### Quick AutoMCP Start
+
+```bash
+# Install AutoMCP
+pip install naptha-automcp
+
+# Run the MCP server
+python run_mcp.py
+
+# Or use AutoMCP CLI
+automcp serve -t sse
+
+# Deploy to Naptha MCPaaS
+# Visit https://labs.naptha.ai/ and connect your GitHub repo
+```
+
+For detailed AutoMCP integration instructions, see [AutoMCP Integration Guide](docs/AUTOMCP_INTEGRATION.md).
 
 ## 🏗️ Architecture
 
