@@ -1,144 +1,274 @@
-# Luna-service MCP Server
+# Luna-Services - Universal MCP System
 
-Welcome to **Luna-service** — the ultimate Master Control Program (MCP) server for automating workflows, streamlining development, managing documentation, running tests, and empowering your engineering team from one robust platform.
+> AI-Powered Development Assistant with Voice & Multi-Modal Capabilities
 
----
+Luna-Services is a comprehensive Universal Model Context Protocol (MCP) system that provides intelligent development assistance powered by Google Gemini AI, voice interaction capabilities, and multi-modal processing. Built for modern development teams seeking AI-enhanced productivity.
 
-## 🚀 Key Features
+## 🚀 Features
 
-- **Centralized Automation:** Schedule, run, and monitor scripts and jobs with full logging and rollback.
-- **Auto-Documentation:** Generate and host project documentation directly from code and markdown.
-- **Integrated Testing:** Automated unit/integration tests with real-time results and reporting.
-- **Team & Project Management:** Role-based access, Kanban boards, and audit logs.
-- **Seamless Integrations:** Connect with GitHub, Slack, Jira, and more.
-- **Security First:** Built-in authentication, authorization, and encryption.
+- **Universal MCP Integration**: Complete Model Context Protocol implementation with Google Gemini 2.0 Flash
+- **Voice-Enabled Development**: Natural language voice commands for code generation and assistance
+- **Multi-Modal Processing**: Handle text, code, voice, and file inputs seamlessly
+- **Real-time Code Generation**: AI-powered code assistance with context awareness
+- **Clerk Authentication**: Secure user management with tier-based access (Free, Pro, Enterprise)
+- **Intelligent Dashboard**: Real-time activity tracking and project insights
+- **Enterprise Ready**: Scalable architecture with Docker support and monitoring
 
----
+## 🏗️ Architecture
 
-## 🏆 Recommended Tech Stack
+- **Frontend**: React 18 + TypeScript + Chakra UI + Vite
+- **Backend**: FastAPI + Python 3.11+ + Universal MCP Protocol
+- **AI Integration**: Google Gemini 2.0 Flash + LangChain + Voice Processing
+- **Authentication**: Clerk Authentication with tier-based access
+- **Database**: PostgreSQL + Redis for caching
+- **Containerization**: Docker + Docker Compose with NVIDIA GPU support
+- **Voice Processing**: NVIDIA Riva (optional) for advanced TTS/ASR
 
-After considering performance, reliability, community support, and extensibility, here is the best-in-class stack for Luna-service:
-
-- **Frontend:** [React.js](https://react.dev/) (TypeScript, Chakra UI)
-- **Backend:** [FastAPI](https://fastapi.tiangolo.com/) (Python 3.11+)
-- **Task Orchestration:** [Celery](https://docs.celeryq.dev/en/stable/) (with Redis as broker)
-- **Database:** [PostgreSQL](https://www.postgresql.org/)
-- **Cache/Queue:** [Redis](https://redis.io/)
-- **Containerization:** [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/)
-- **CI/CD:** [GitHub Actions](https://github.com/features/actions)
-- **Documentation:** [MkDocs](https://www.mkdocs.org/) (with Material theme)
-- **Authentication:** [Keycloak](https://www.keycloak.org/) (optional, for enterprise SSO)
-- **Integrations:** Native connectors for GitHub, Slack, Jira
-
----
-
-## 🏗️ Architecture Overview
-
-- **Frontend Dashboard:** React (TypeScript) — user-friendly interface for all features.
-- **API Layer:** FastAPI — high-performance RESTful endpoints.
-- **Task Runner:** Celery — distributed job execution and scheduling.
-- **Database:** PostgreSQL — reliable, scalable data storage.
-- **Cache/Queue:** Redis — fast in-memory caching and task queue.
-- **Docs Engine:** MkDocs — beautiful, auto-generated documentation.
-- **CI/CD:** GitHub Actions — for automated testing and deployment.
-- **Containerized:** All services run in isolated Docker containers for easy deployment and scaling.
-
----
-
-## ⚡ Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- Docker & Docker Compose
-- GitHub account (for CI/CD)
-- Python 3.11+ (for local development)
+- **Node.js 18+** (Required for frontend)
+- **Python 3.9+** (Required for backend)
+- **Docker & Docker Compose** (Recommended for full deployment)
+- **Git** (For version control)
 
-### Quick Start
+### Option 1: One-Command Startup (Recommended)
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/yourusername/luna-service.git
-   cd luna-service
-   ```
+```bash
+# Clone the repository
+git clone https://github.com/Drago-03/Luna-Services.git
+cd Luna-Services
 
-2. **Configure environment variables:**
-   - Copy `.env.example` to `.env` and fill in your secrets.
+# Start both backend and frontend with one command
+./start.sh
+```
 
-3. **Start the stack:**
-   ```bash
-   docker-compose up --build
-   ```
+This will:
+- ✅ Check all prerequisites
+- ✅ Install dependencies automatically
+- ✅ Start both backend (FastAPI) and frontend (React/Vite)
+- ✅ Set up environment configuration
+- ✅ Run health checks
+- ✅ Display all access URLs
 
-4. **Access the dashboard:**
-   - Open [http://localhost:3000](http://localhost:3000) in your browser.
+### Option 2: Docker Deployment
 
----
+```bash
+# Start with Docker Compose
+./start.sh --docker
 
-## 📝 Documentation
+# Or use production mode
+./start.sh --production --docker
+```
 
-- Auto-generated docs available at `/docs` after launch.
-- Internal wiki and code reference via MkDocs.
+### Option 3: Selective Startup
 
----
+```bash
+# Start only backend
+./start.sh --backend-only
 
-## 🤖 Automation & Workflows
+# Start only frontend  
+./start.sh --frontend-only
 
-- Place your automation scripts in `/scripts`.
-- Schedule and monitor jobs from the dashboard.
-- View logs and execution history in real time.
+# Start in production mode
+./start.sh --production
+```
 
----
+## 📱 Access Points
 
-## 🧪 Testing
+After startup, access the system at:
 
-- Place tests in `/tests`.
-- Automated runs via GitHub Actions.
-- Results and coverage available on the dashboard.
+- **Frontend Dashboard**: http://localhost:3000
+- **Backend API**: http://localhost:8000
+- **API Documentation**: http://localhost:8000/docs
+- **MCP Dashboard**: http://localhost:8000/api/mcp
+- **Health Check**: http://localhost:8000/health
 
----
+## 🛠️ Development Scripts
 
-## 👥 Team Management
+### Primary Scripts
 
-- Invite users, assign roles, manage permissions.
-- Organize tasks with built-in Kanban boards.
-- View audit logs for all actions.
+```bash
+# Start the system (installs deps if needed)
+./start.sh                    # Start both frontend and backend
+npm run start                 # Alternative using npm
 
----
+# Stop all services gracefully
+./stop.sh                     # Graceful shutdown
+./stop.sh --force            # Force kill all processes
 
-## 🔌 Integrations
+# Development utilities
+./dev.sh status              # Check service status
+./dev.sh logs --follow       # Watch logs in real-time
+./dev.sh health              # Run comprehensive health checks
+```
 
-- **GitHub:** Sync repositories, trigger workflows.
-- **Slack:** Receive job and system notifications.
-- **Jira:** Sync issues and tasks.
+### Advanced Usage
 
----
+```bash
+# Package.json scripts (npm/yarn)
+npm run start:frontend       # Frontend only
+npm run start:backend        # Backend only  
+npm run start:production     # Production build
+npm run start:docker         # Docker mode
 
-## 🛡️ Security
+npm run stop                 # Stop services
+npm run status               # Service status
+npm run logs:backend         # Backend logs
+npm run restart:frontend     # Restart frontend only
 
-- Role-based access control
-- SSO with Keycloak (optional)
-- End-to-end encryption for data at rest and in transit
+# Direct script usage
+./start.sh --install-deps    # Force reinstall dependencies
+./start.sh --docker         # Use Docker Compose
+./dev.sh update-deps        # Update all dependencies
+./dev.sh clean              # Clean build artifacts
+```
 
----
+### Development Workflow
 
-## 📈 Roadmap
+```bash
+# Daily development routine
+./dev.sh status              # Check what's running
+./start.sh                   # Start if needed
+./dev.sh logs --backend      # Monitor backend logs
+./dev.sh restart --frontend # Restart frontend after changes
+./stop.sh                   # Clean shutdown at end of day
+```
+   - Documentation: http://localhost:8080
 
-- [ ] Marketplace for plugins and integrations
-- [ ] AI-powered workflow suggestions
-- [ ] Mobile dashboard app
+### Demo Credentials
 
----
+- **Email**: admin@luna-service.com
+- **Password**: admin123
+
+## 📖 Documentation
+
+- [Getting Started](docs/getting-started/installation.md)
+- [User Guide](docs/user-guide/dashboard.md)
+- [API Reference](docs/api/auth.md)
+- [Deployment Guide](docs/deployment/docker.md)
+
+## 🔧 Development
+
+### Frontend Development
+
+```bash
+npm install
+npm run dev
+```
+
+### Backend Development
+
+```bash
+cd backend
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
+
+### Running Tests
+
+```bash
+# Frontend tests
+npm test
+
+# Backend tests
+cd backend
+pytest
+```
+
+## 🐳 Production Deployment
+
+### Docker Compose (Recommended)
+
+```bash
+# Production deployment
+docker-compose -f docker-compose.prod.yml up -d
+
+# With SSL certificates
+docker-compose -f docker-compose.prod.yml -f docker-compose.ssl.yml up -d
+```
+
+### Kubernetes
+
+```bash
+# Apply Kubernetes manifests
+kubectl apply -f k8s/
+```
+
+## 🔒 Security
+
+Luna-service implements enterprise-grade security:
+
+- JWT-based authentication
+- Role-based access control (RBAC)
+- API rate limiting
+- Data encryption at rest and in transit
+- Comprehensive audit logging
+- Security headers and CORS protection
+
+## 🔗 Integrations
+
+### GitHub Integration
+
+```yaml
+integrations:
+  github:
+    enabled: true
+    webhook_url: "https://your-domain.com/api/webhooks/github"
+    repository: "your-org/your-repo"
+```
+
+### Slack Notifications
+
+```yaml
+integrations:
+  slack:
+    enabled: true
+    webhook_url: "https://hooks.slack.com/services/..."
+    channel: "#luna-notifications"
+```
+
+### Jira Integration
+
+```yaml
+integrations:
+  jira:
+    enabled: true
+    server_url: "https://your-org.atlassian.net"
+    project_key: "LUNA"
+```
+
+## 📊 Monitoring
+
+Luna-service includes comprehensive monitoring:
+
+- Prometheus metrics endpoint: `/api/metrics`
+- Health check endpoint: `/health`
+- Structured logging with request tracing
+- Performance monitoring and alerting
 
 ## 🤝 Contributing
 
-Pull requests are welcome! For major changes, open an issue first to discuss what you’d like to change.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
----
+## 📝 License
 
-## 📄 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-[MIT](LICENSE)
+## 🆘 Support
 
----
+- 📖 [Documentation](https://docs.luna-service.com)
+- 🐛 [Issue Tracker](https://github.com/your-org/luna-service/issues)
+- 💬 [Discussions](https://github.com/your-org/luna-service/discussions)
+- 📧 [Email Support](mailto:support@luna-service.com)
 
-**Luna-service**: Automate. Collaborate. Innovate.
+## 🏆 Acknowledgments
+
+- Built with [FastAPI](https://fastapi.tiangolo.com/)
+- UI powered by [Chakra UI](https://chakra-ui.com/)
+- Documentation with [MkDocs Material](https://squidfunk.github.io/mkdocs-material/)

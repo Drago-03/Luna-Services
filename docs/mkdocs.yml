@@ -1,0 +1,69 @@
+site_name: Luna-service Documentation
+site_description: Master Control Program for Engineering Teams
+site_author: Luna-service Team
+site_url: https://luna-service.com
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: blue
+      accent: light blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue
+      accent: light blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.annotate
+
+plugins:
+  - search
+  - swagger-ui-tag
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - Quick Start: getting-started/quickstart.md
+    - Configuration: getting-started/configuration.md
+  - User Guide:
+    - Dashboard: user-guide/dashboard.md
+    - Automation: user-guide/automation.md
+    - Testing: user-guide/testing.md
+    - Documentation: user-guide/documentation.md
+    - Team Management: user-guide/team.md
+  - API Reference:
+    - Authentication: api/auth.md
+    - Projects: api/projects.md
+    - Automation: api/automation.md
+    - Testing: api/testing.md
+  - Integrations:
+    - GitHub: integrations/github.md
+    - Slack: integrations/slack.md
+    - Jira: integrations/jira.md
+  - Deployment:
+    - Docker: deployment/docker.md
+    - Kubernetes: deployment/kubernetes.md
+    - Production: deployment/production.md
