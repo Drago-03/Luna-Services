@@ -4,7 +4,10 @@ uvicorn[standard]==0.24.0
 pydantic==2.5.0
 pydantic-settings==2.1.0
 
-# Database
+# Supabase integration
+supabase==2.3.4
+
+# Database (keeping SQLAlchemy for ORM functionality)
 sqlalchemy==2.0.23
 asyncpg==0.29.0
 alembic==1.13.1
