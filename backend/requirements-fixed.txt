@@ -1,13 +1,13 @@
-# FastAPI and core dependencies - Updated for compatibility
+# FastAPI and core dependencies - Resolved version conflicts
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
-pydantic>=2.5.0,<3.0.0
-pydantic-settings>=2.1.0
+pydantic>=2.7.4,<3.0.0
+pydantic-settings>=2.3.0
 
 # Supabase integration
 supabase==2.3.4
 
-# Database (SQLAlchemy ORM functionality)
+# Database (SQLAlchemy ORM functionality)  
 sqlalchemy==2.0.23
 asyncpg==0.29.0
 alembic==1.13.1
@@ -25,11 +25,11 @@ redis==5.0.1
 httpx==0.25.2
 aiohttp==3.9.1
 
-# AI and Machine Learning - MCP Core Dependencies (Updated versions)
+# AI and Machine Learning - Compatible versions
 google-generativeai>=0.8.0
-langchain>=0.1.0,<0.3.0
-langchain-community>=0.0.1,<0.3.0
-langchain-core>=0.1.0,<0.3.0
+langchain>=0.2.0,<0.3.0
+langchain-community>=0.2.0,<0.3.0
+langchain-core>=0.2.0,<0.3.0
 langchain-google-genai>=1.0.0
 
 # Essential dependencies with compatible versions
@@ -40,16 +40,6 @@ aiofiles>=23.0.0
 # NVIDIA Riva integration (optional)
 grpcio>=1.50.0,<2.0.0
 grpcio-tools>=1.50.0,<2.0.0
-
-# Optional ML packages - Install separately using requirements-ml-optional.txt
-# torch>=2.1.0  # Use requirements-ml-optional.txt
-# transformers>=4.30.0  # Use requirements-ml-optional.txt
-# sentence-transformers>=2.0.0  # Use requirements-ml-optional.txt
-# chromadb>=0.4.0  # Use requirements-ml-optional.txt
-# faiss-cpu>=1.7.0  # Use requirements-ml-optional.txt
-# librosa>=0.10.0  # Use requirements-ml-optional.txt
-# soundfile>=0.12.0  # Use requirements-ml-optional.txt
-# opencv-python>=4.8.0  # Use requirements-ml-optional.txt
 
 # Development dependencies
 pytest==7.4.3

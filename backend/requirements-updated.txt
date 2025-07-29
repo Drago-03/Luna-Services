@@ -32,24 +32,26 @@ langchain-community>=0.0.1,<0.3.0
 langchain-core>=0.1.0,<0.3.0
 langchain-google-genai>=1.0.0
 
-# Essential dependencies with compatible versions
+# Essential ML dependencies with compatible versions
 numpy>=1.24.0,<2.0.0
 pillow>=10.0.0,<11.0.0
 aiofiles>=23.0.0
+
+# Optional ML packages (install separately if needed)
+# torch>=2.1.0  # Comment out to avoid conflicts
+# transformers>=4.30.0  # Comment out to avoid conflicts
+# sentence-transformers>=2.0.0  # Comment out to avoid conflicts
+# chromadb>=0.4.0  # Comment out to avoid conflicts
+# faiss-cpu>=1.7.0  # Comment out to avoid conflicts
 
 # NVIDIA Riva integration (optional)
 grpcio>=1.50.0,<2.0.0
 grpcio-tools>=1.50.0,<2.0.0
 
-# Optional ML packages - Install separately using requirements-ml-optional.txt
-# torch>=2.1.0  # Use requirements-ml-optional.txt
-# transformers>=4.30.0  # Use requirements-ml-optional.txt
-# sentence-transformers>=2.0.0  # Use requirements-ml-optional.txt
-# chromadb>=0.4.0  # Use requirements-ml-optional.txt
-# faiss-cpu>=1.7.0  # Use requirements-ml-optional.txt
-# librosa>=0.10.0  # Use requirements-ml-optional.txt
-# soundfile>=0.12.0  # Use requirements-ml-optional.txt
-# opencv-python>=4.8.0  # Use requirements-ml-optional.txt
+# Optional audio/image processing (install separately if needed)
+# librosa>=0.10.0  # Comment out to avoid conflicts
+# soundfile>=0.12.0  # Comment out to avoid conflicts
+# opencv-python>=4.8.0  # Comment out to avoid conflicts
 
 # Development dependencies
 pytest==7.4.3

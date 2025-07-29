@@ -99,7 +99,6 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
 
 # Gatsby files
 .cache/
@@ -191,7 +190,6 @@ docker-compose.override.yml
 .dev
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
@@ -215,7 +213,6 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # Build outputs
-dist/
 build/
 out/
 .next/

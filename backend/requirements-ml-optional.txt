@@ -1,0 +1,30 @@
+# Optional Heavy ML Dependencies for Universal MCP
+# Install these separately after core dependencies are working
+# Usage: pip install -r requirements-ml-optional.txt
+
+# PyTorch ecosystem
+torch>=2.1.0,<3.0.0
+torchvision>=0.16.0
+torchaudio>=2.1.0
+
+# Transformers and NLP
+transformers>=4.30.0,<5.0.0
+sentence-transformers>=2.2.0,<3.0.0
+tokenizers>=0.13.0
+
+# Vector databases and embeddings
+chromadb>=0.4.0,<0.5.0
+faiss-cpu>=1.7.0,<2.0.0
+
+# Audio processing
+librosa>=0.10.0,<0.11.0
+soundfile>=0.12.0,<0.13.0
+
+# Image processing
+opencv-python>=4.8.0,<5.0.0
+
+# Additional ML utilities
+scikit-learn>=1.3.0,<2.0.0
+scipy>=1.11.0,<2.0.0
+matplotlib>=3.7.0,<4.0.0
+seaborn>=0.12.0,<0.14.0
