@@ -6,38 +6,64 @@ on:
   pull_request:
     branches: [ main ]
 
+env:
+  NODE_VERSION: '18'
+  PYTHON_VERSION: '3.11'
+
 jobs:
   test-frontend:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
     
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
     
+    - name: Cache node modules
+      uses: actions/cache@v3
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    
     - name: Install dependencies
-      run: npm ci
+      run: |
+        npm ci --prefer-offline --no-audit
     
     - name: Run linting
       run: npm run lint
+      continue-on-error: false
     
     - name: Run tests
       run: npm run test
+      continue-on-error: false
     
     - name: Build application
       run: npm run build
+      continue-on-error: false
 
   test-backend:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    
     services:
       postgres:
         image: postgres:15
         env:
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: test_db
+          POSTGRES_USER: postgres
         ports:
           - 5432:5432
         options: >-
@@ -57,47 +83,79 @@ jobs:
           --health-retries 5
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
     
     - name: Setup Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
-        python-version: '3.11'
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: 'pip'
+    
+    - name: Cache pip dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    
+    - name: Upgrade pip and install build tools
+      run: |
+        python -m pip install --upgrade pip setuptools wheel
     
     - name: Install dependencies
       run: |
-        cd backend
         pip install -r requirements.txt
+      continue-on-error: false
+    
+    - name: Wait for services
+      run: |
+        timeout 60 bash -c 'until pg_isready -h localhost -p 5432; do sleep 1; done'
+        timeout 60 bash -c 'until redis-cli -h localhost -p 6379 ping; do sleep 1; done'
     
     - name: Run tests
       run: |
-        cd backend
-        pytest
+        python -m pytest -v
       env:
         DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test_db
         REDIS_URL: redis://localhost:6379/0
+        PYTHONPATH: .
+      continue-on-error: false
 
   security-scan:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
     
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
         scan-type: 'fs'
         scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+    
+    - name: Upload Trivy scan results
+      uses: github/codeql-action/upload-sarif@v2
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
 
   deploy:
-    needs: [test-frontend, test-backend]
+    needs: [test-frontend, test-backend, security-scan]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
     
     - name: Deploy to staging
       run: |
+        echo "Deployment would happen here"
+        # Add your deployment commands here
         echo "Deploying to staging environment"
         # Add your deployment commands here
     

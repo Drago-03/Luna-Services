@@ -1,8 +1,8 @@
 # FastAPI and core dependencies
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
-pydantic==2.5.0
-pydantic-settings==2.1.0
+pydantic>=2.7.4,<3.0.0
+pydantic-settings>=2.0.3
 
 # Supabase integration
 supabase==2.3.4
@@ -26,11 +26,11 @@ httpx==0.25.2
 aiohttp==3.9.1
 
 # AI and Machine Learning - MCP Core Dependencies
-google-generativeai==0.8.3
-langchain==0.2.16
-langchain-community==0.2.16
-langchain-core==0.2.40
-langchain-google-genai==1.0.10
+google-generativeai>=0.8.3
+langchain>=0.2.16
+langchain-community>=0.2.16
+langchain-core>=0.2.40
+langchain-google-genai>=1.0.10
 chromadb==0.4.18
 sentence-transformers==2.2.2
 transformers==4.36.2
