@@ -1,0 +1,39 @@
+/* Lunar Moon Cursor */
+body, * {
+  cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIGZpbGw9InVybCgjZ3JhZGllbnQpIiBzdHJva2U9InJnYmEoMjQ5LCAxMTUsIDIyLCAwLjgpIiBzdHJva2Utd2lkdGg9IjIiLz4KPGNpcmNsZSBjeD0iOSIgY3k9IjgiIHI9IjEuNSIgZmlsbD0icmdiYSgxNjksIDE2OSwgMTY5LCAwLjYpIi8+CjxjaXJjbGUgY3g9IjE1IiBjeT0iMTUiIHI9IjEiIGZpbGw9InJnYmEoMTY5LCAxNjksIDE2OSwgMC40KSIvPgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJncmFkaWVudCIgeDE9IjAiIHkxPSIwIiB4Mj0iMjQiIHkyPSIyNCI+CjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmNWY1ZjUiLz4KPHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiNlMGUwZTAiLz4KPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjYmRiZGJkIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+') 12 12, auto;
+}
+
+/* Hover states for interactive elements */
+a, button, [role="button"], input[type="submit"], input[type="button"] {
+  cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIGZpbGw9InVybCgjZ3JhZGllbnQyKSIgc3Ryb2tlPSJyZ2JhKDI0OSwgMTE1LCAyMiwgMSkiIHN0cm9rZS13aWR0aD0iMyIvPgo8Y2lyY2xlIGN4PSI5IiBjeT0iOCIgcj0iMS41IiBmaWxsPSJyZ2JhKDE2OSwgMTY5LCAxNjksIDAuOCkiLz4KPGNpcmNsZSBjeD0iMTUiIGN5PSIxNSIgcj0iMSIgZmlsbD0icmdiYSgxNjksIDE2OSwgMTY5LCAwLjYpIi8+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50MiIgeDE9IjAiIHkxPSIwIiB4Mj0iMjQiIHkyPSIyNCI+CjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGOTczMTYiLz4KPHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiNFQUIzMDgiLz4KPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjRjk3MzE2Ii8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+') 12 12, pointer;
+}
+
+/* Loading/waiting cursor */
+.loading, [aria-busy="true"] {
+  cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIGZpbGw9InVybCgjZ3JhZGllbnQzKSIgc3Ryb2tlPSJyZ2JhKDI0OSwgMTE1LCAyMiwgMC41KSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI0IDIiLz4KPGNpcmNsZSBjeD0iOSIgY3k9IjgiIHI9IjEuNSIgZmlsbD0icmdiYSgxNjksIDE2OSwgMTY5LCAwLjQpIi8+CjxjaXJjbGUgY3g9IjE1IiBjeT0iMTUiIHI9IjEiIGZpbGw9InJnYmEoMTY5LCAxNjksIDE2OSwgMC4zKSIvPgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJncmFkaWVudDMiIHgxPSIwIiB5MT0iMCIgeDI9IjI0IiB5Mj0iMjQiPgo8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZjVmNWY1IiBzdG9wLW9wYWNpdHk9IjAuNSIvPgo8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2UwZTBlMCIgc3RvcC1vcGFjaXR5PSIwLjMiLz4KPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjYmRiZGJkIiBzdG9wLW9wYWNpdHk9IjAuMiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+CjwvZmlsdGVyPgo8L3N2Zz4K') 12 12, wait;
+}
+
+/* Text input cursor */
+input[type="text"], input[type="email"], input[type="password"], textarea {
+  cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGxpbmUgeDE9IjEyIiB5MT0iNCIgeDI9IjEyIiB5Mj0iMjAiIHN0cm9rZT0iIzI0OTczMTYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxsaW5lIHgxPSI0IiB5MT0iMTIiIHgyPSI4IiB5Mj0iMTIiIHN0cm9rZT0iIzI0OTczMTYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxsaW5lIHgxPSIxNiIgeTE9IjEyIiB4Mj0iMjAiIHkyPSIxMiIgc3Ryb2tlPSIjMjQ5NzMxNiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+') 12 12, text;
+}
+
+/* Disabled elements */
+[disabled], .disabled {
+  cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIGZpbGw9InJnYmEoMTY5LCAxNjksIDE2OSwgMC4zKSIgc3Ryb2tlPSJyZ2JhKDE2OSwgMTY5LCAxNjksIDAuNSkiIHN0cm9rZS13aWR0aD0iMiIvPgo8bGluZSB4MT0iNCIgeTE9IjQiIHgyPSIyMCIgeTI9IjIwIiBzdHJva2U9InJnYmEoMjU1LCA1MywgNTMsIDAuOCkiIHN0cm9rZS13aWR0aD0iMiIvPgo8L3N2Zz4K') 12 12, not-allowed;
+}
+
+/* Lunar Eclipse Animation for cursor on hover */
+@keyframes cursorEclipse {
+  0%, 100% { 
+    filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.6));
+  }
+  50% { 
+    filter: drop-shadow(0 0 15px rgba(249, 115, 22, 1)) drop-shadow(0 0 25px rgba(249, 115, 22, 0.8));
+  }
+}
+
+/* Apply eclipse effect to interactive elements on hover */
+a:hover, button:hover, [role="button"]:hover {
+  animation: cursorEclipse 2s ease-in-out infinite;
+}

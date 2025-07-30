@@ -55,12 +55,14 @@ export default function Header() {
                 Universal MCP Dashboard
               </Text>
               <Badge 
-                colorScheme="orange" 
-                variant="solid"
-                fontSize="xs"
-                px={2}
-                py={1}
-                borderRadius="md"
+                bg="transparent"
+                color="rgba(249, 115, 22, 0.6)"
+                border="1px solid rgba(249, 115, 22, 0.3)"
+                variant="outline"
+                fontSize="8px"
+                px={1.5}
+                py={0.5}
+                borderRadius="sm"
               >
                 BETA
               </Badge>
@@ -112,7 +114,7 @@ export default function Header() {
 
           {/* User Menu using Clerk's UserButton */}
           <UserButton 
-            afterSignOutUrl="/auth"
+            afterSignOutUrl="/signin"
             appearance={{
               elements: {
                 avatarBox: {

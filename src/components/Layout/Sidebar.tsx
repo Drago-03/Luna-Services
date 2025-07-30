@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Box,
   VStack,
@@ -49,7 +48,7 @@ const bottomNavItems: NavItem[] = [
 export default function Sidebar() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { user, getUserTier } = useAuth();
+  const { getUserTier } = useAuth();
   
   const bgColor = useColorModeValue('white', 'gray.800');
   const borderColor = useColorModeValue('gray.200', 'gray.700');
@@ -83,7 +82,7 @@ export default function Sidebar() {
           transition="all 0.2s"
         >
           <Icon as={item.icon} boxSize={5} mr={3} />
-                    <Text fontWeight={isActive ? 'semibold' : 'medium'} fontSize="sm" flex="1">
+          <Text fontWeight={isActive ? 'semibold' : 'medium'} fontSize="sm" flex="1">
             {item.name}
           </Text>
           
@@ -182,74 +181,5 @@ export default function Sidebar() {
         </Stack>
       </Box>
     </VStack>
-  );
-}
-        </Flex>
-      </Box>
-    );
-  };
-
-  return (
-    <Box
-      as="nav"
-      w={64}
-      bg={bgColor}
-      borderRight="1px"
-      borderColor={borderColor}
-      h="100vh"
-      overflowY="auto"
-      position="fixed"
-      left={0}
-      top={0}
-      zIndex={10}
-      boxShadow="sm"
-    >
-      <VStack gap={0} align="stretch" h="full">
-        {/* Logo */}
-        <Box p={6} borderBottom="1px" borderColor={borderColor}>
-          <Text fontSize="xl" fontWeight="bold" color="gray.900">
-            Luna Services
-          </Text>
-          <Text fontSize="sm" color="gray.500">
-            Universal MCP
-          </Text>
-        </Box>
-
-        {/* Main Navigation */}
-        <Box flex="1" p={4}>
-          <Stack gap={1}>
-            {mainNavItems.map(renderNavItem)}
-          </Stack>
-        </Box>
-
-        {/* Divider */}
-        <Box mx={4} h="1px" bg="gray.200" />
-
-        {/* Bottom Navigation */}
-        <Box p={4}>
-          <Stack gap={1}>
-            <Box
-              p={3}
-              bg="blue.50"
-              borderRadius="md"
-              border="1px"
-              borderColor="blue.200"
-              mb={3}
-            >
-              <Text fontSize="xs" fontWeight="semibold" color="blue.600" mb={1}>
-                AI Status
-              </Text>
-              <Flex align="center">
-                <Box w={2} h={2} bg="green.400" borderRadius="full" mr={2} />
-                <Text fontSize="xs" color="blue.600">
-                  All systems operational
-                </Text>
-              </Flex>
-            </Box>
-            {bottomNavItems.map(renderNavItem)}
-          </Stack>
-        </Box>
-      </VStack>
-    </Box>
   );
 }

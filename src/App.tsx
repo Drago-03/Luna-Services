@@ -1,88 +1,165 @@
-import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Box } from '@chakra-ui/react';
-import { useAuth } from '@clerk/clerk-react';
-import { Layout } from './components/Layout';
+import { ClerkProvider, useAuth } from '@clerk/clerk-react';
+
+// Public Pages
+import LandingPage from './pages/Landing';
+import DocumentationPage from './pages/Documentation/DocumentationPage';
+import IntegrationsPage from './pages/Integrations/IntegrationsPage';
+import StorePage from './pages/Store/StorePage';
+import ContributingPage from './pages/Contributing/ContributingPage';
+import ContactPage from './pages/Contact/ContactPage';
+import PrivacyPolicyPage from './pages/Legal/PrivacyPolicy';
+import TermsOfServicePage from './pages/Legal/TermsOfService';
+import CookiePolicyPage from './pages/Legal/CookiePolicy';
+import AboutPage from './pages/About';
+import StatusPage from './pages/Status';
+
+// Auth Pages
+import SignInPage from './pages/SignIn';
+import SignUpPage from './pages/SignUp';
+
+// Protected Dashboard Components
+import ShadowHeader from './components/Layout/ShadowHeader';
+import ShadowSidebar from './components/Layout/ShadowSidebar';
 import { Dashboard } from './pages/Dashboard';
 import { Automation } from './pages/Automation';
 import { Documentation } from './pages/Documentation';
-import { Testing } from './pages/Testing';
-import { TeamManagement } from './pages/TeamManagement';
 import { Integrations } from './pages/Integrations';
 import { Settings } from './pages/Settings';
-import AuthPage from './pages/Auth';
+import { TeamManagement } from './pages/TeamManagement';
+import { Testing } from './pages/Testing';
 import MCPPage from './pages/MCP';
-import { MCPAuthProvider } from './contexts/ClerkAuthContext';
 
-// Protected Route component
-const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+
+if (!PUBLISHABLE_KEY) {
+  throw new Error("Missing Publishable Key");
+}
+
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isLoaded, isSignedIn } = useAuth();
 
   if (!isLoaded) {
-    return (
-      <Box 
-        minH="100vh" 
-        display="flex" 
-        alignItems="center" 
-        justifyContent="center"
-        bg="gray.50"
-      >
-        <Box textAlign="center">
-          <Box 
-            w={12} 
-            h={12} 
-            border="4px solid #E2E8F0" 
-            borderTopColor="#3182CE" 
-            borderRadius="full" 
-            mx="auto"
-            mb={4}
-            css={{
-              animation: 'spin 1s linear infinite',
-              '@keyframes spin': {
-                '0%': { transform: 'rotate(0deg)' },
-                '100%': { transform: 'rotate(360deg)' },
-              },
-            }}
-          />
-          <Box fontSize="lg" color="gray.600">Loading Universal MCP BETA...</Box>
-        </Box>
-      </Box>
-    );
+    return <div>Loading...</div>;
   }
 
   if (!isSignedIn) {
-    return <Navigate to="/auth" replace />;
+    return <Navigate to="/signin" replace />;
   }
 
-  return <>{children}</>;
-};
+  return (
+    <>
+      <ShadowSidebar />
+      <ShadowHeader />
+      <div className="dashboard-layout">
+        {children}
+      </div>
+    </>
+  );
+}
+
+function AppRoutes() {
+  const { isSignedIn } = useAuth();
+
+  return (
+    <Routes>
+      {/* Public Routes */}
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/docs" element={<DocumentationPage />} />
+      <Route path="/integrations-info" element={<IntegrationsPage />} />
+      <Route path="/store" element={<StorePage />} />
+      <Route path="/contributing" element={<ContributingPage />} />
+      <Route path="/contact" element={<ContactPage />} />
+      <Route path="/privacy" element={<PrivacyPolicyPage />} />
+      <Route path="/terms" element={<TermsOfServicePage />} />
+      <Route path="/cookies" element={<CookiePolicyPage />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/status" element={<StatusPage />} />
+      
+      {/* Auth Routes */}
+      <Route 
+        path="/signin" 
+        element={isSignedIn ? <Navigate to="/dashboard" replace /> : <SignInPage />} 
+      />
+      <Route 
+        path="/signup" 
+        element={isSignedIn ? <Navigate to="/dashboard" replace /> : <SignUpPage />} 
+      />
+      
+      {/* Protected Dashboard Routes */}
+      <Route 
+        path="/dashboard" 
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/mcp" 
+        element={
+          <ProtectedRoute>
+            <MCPPage />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/automation" 
+        element={
+          <ProtectedRoute>
+            <Automation />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/documentation" 
+        element={
+          <ProtectedRoute>
+            <Documentation />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/integrations" 
+        element={
+          <ProtectedRoute>
+            <Integrations />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/testing" 
+        element={
+          <ProtectedRoute>
+            <Testing />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/team" 
+        element={
+          <ProtectedRoute>
+            <TeamManagement />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/settings" 
+        element={
+          <ProtectedRoute>
+            <Settings />
+          </ProtectedRoute>
+        } 
+      />
+    </Routes>
+  );
+}
 
 function App() {
   return (
-    <MCPAuthProvider>
-      <Box minH="100vh">
-        <Routes>
-          <Route path="/auth" element={<AuthPage />} />
-          <Route path="/" element={
-            <ProtectedRoute>
-              <Layout />
-            </ProtectedRoute>
-          }>
-            <Route index element={<Navigate to="/dashboard" replace />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="automation" element={<Automation />} />
-            <Route path="documentation" element={<Documentation />} />
-            <Route path="testing" element={<Testing />} />
-            <Route path="team" element={<TeamManagement />} />
-            <Route path="integrations" element={<Integrations />} />
-            <Route path="mcp" element={<MCPPage />} />
-            <Route path="settings" element={<Settings />} />
-          </Route>
-          {/* Catch all route */}
-          <Route path="*" element={<Navigate to="/dashboard" replace />} />
-        </Routes>
-      </Box>
-    </MCPAuthProvider>
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+      <AppRoutes />
+    </ClerkProvider>
   );
 }
 

@@ -159,11 +159,6 @@ export const DocumentationList: React.FC<DocumentationListProps> = ({
     const matchesFilter = !filter || doc.type === filter;
     return matchesSearch && matchesFilter;
   });
-    const matchesSearch = doc.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         doc.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesFilter = !filter || doc.type === filter;
-    return matchesSearch && matchesFilter;
-  });
 
   const getStatusColor = (status: string) => {
     switch (status) {

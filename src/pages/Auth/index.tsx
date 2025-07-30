@@ -122,12 +122,14 @@ const AuthPage: React.FC = () => {
                       Universal MCP
                     </Heading>
                     <Badge 
-                      colorScheme="orange" 
-                      variant="solid"
-                      fontSize="sm"
-                      px={3}
-                      py={1}
-                      borderRadius="md"
+                      bg="transparent"
+                      color="rgba(249, 115, 22, 0.6)"
+                      border="1px solid rgba(249, 115, 22, 0.3)"
+                      variant="outline"
+                      fontSize="8px"
+                      px={1.5}
+                      py={0.5}
+                      borderRadius="sm"
                     >
                       BETA
                     </Badge>

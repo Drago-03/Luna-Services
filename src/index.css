@@ -1,3 +1,9 @@
+/* Import Lunar Cursor Styles */
+@import './styles/lunar-cursor.css';
+
+/* Import Enhanced Lunar Theme */
+@import './styles/lunar-theme.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

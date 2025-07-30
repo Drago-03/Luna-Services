@@ -5,21 +5,12 @@ import {
   VStack,
   HStack,
   Button,
-  Input,
   Textarea,
-  Select,
   Badge,
   useColorModeValue,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
   IconButton,
 } from '@chakra-ui/react';
-import { Save, Eye, X, Edit, Download } from 'lucide-react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { Save, X, Edit, Download } from 'lucide-react';
 
 interface DocumentationEditorProps {
   docId: string;
@@ -27,7 +18,6 @@ interface DocumentationEditorProps {
 }
 
 export const DocumentationEditor: React.FC<DocumentationEditorProps> = ({
-  docId,
   onClose,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -99,7 +89,7 @@ The API returns standard HTTP status codes:
 
   const bgColor = useColorModeValue('white', 'gray.800');
   const borderColor = useColorModeValue('gray.200', 'gray.700');
-  const codeTheme = useColorModeValue(oneLight, oneDark);
+  const codeBg = useColorModeValue('gray.100', 'gray.700');
 
   const renderMarkdown = (text: string) => {
     const lines = text.split('\n');
@@ -128,7 +118,6 @@ The API returns standard HTTP status codes:
           </Text>
         );
       } else if (line.startsWith('```')) {
-        const language = line.substring(3);
         const codeLines = [];
         i++;
         while (i < lines.length && !lines[i].startsWith('```')) {
@@ -137,16 +126,17 @@ The API returns standard HTTP status codes:
         }
         elements.push(
           <Box key={i} mb={4}>
-            <SyntaxHighlighter
-              language={language || 'text'}
-              style={codeTheme}
-              customStyle={{
-                borderRadius: '8px',
-                fontSize: '14px',
-              }}
+            <Box
+              as="pre"
+              bg={codeBg}
+              p={4}
+              borderRadius="md"
+              overflow="auto"
+              fontSize="14px"
+              fontFamily="monospace"
             >
-              {codeLines.join('\n')}
-            </SyntaxHighlighter>
+              <Text as="code">{codeLines.join('\n')}</Text>
+            </Box>
           </Box>
         );
       } else if (line.trim()) {
